@@ -4,7 +4,7 @@ defmodule Homunculus.Dispatcher do
   """
 
   alias Homunculus.Commands
-
+  alias Homunculus.Inline
   @doc """
   Dispatches updates by their content, i.e.
   Message or others
@@ -13,6 +13,8 @@ defmodule Homunculus.Dispatcher do
     case update do
       %{"message" => message} ->
         handle_message(message)
+      %{"inline_query" => inline_query} ->
+        handle_inline(inline_query)
       _ -> nil
     end
   end
@@ -27,11 +29,29 @@ defmodule Homunculus.Dispatcher do
           %{"offset" => offset, "length" => length} = entity
           command = String.slice(text, offset, length)
           case command do
+            "/start" ->
+              Commands.start(message)
             "/greet" ->
               Commands.greet(message)
+            _ -> nil
           end
         end
       _ -> nil
+    end
+  end
+
+  def handle_inline(inline_query) do
+    %{"query" => query} = inline_query
+    case query do
+      "" -> Inline.help(inline_query)
+      _ ->
+        case String.split(query) do
+          [command | _] ->
+            case command do
+              "rot13" -> Inline.rot13(inline_query)
+              _ -> nil
+            end
+        end
     end
   end
 end
