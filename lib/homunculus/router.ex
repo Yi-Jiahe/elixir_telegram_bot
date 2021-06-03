@@ -7,7 +7,6 @@ defmodule Homunculus.Router do
 
   alias Homunculus.Dispatcher
 
-  # @token System.fetch_env("TOKEN") |> (fn {:ok, token } -> token end).()
 
   get "/" do
     send_resp(conn, 200, "Welcome")
