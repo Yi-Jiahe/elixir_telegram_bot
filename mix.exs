@@ -16,7 +16,7 @@ defmodule Homunculus.MixProject do
     [
       extra_applications: [:logger, :inets, :ssl, :plug_cowboy],
       mod: {Homunculus, []},
-      env: [base_url: then(then(System.fetch_env("TOKEN"), fn {:ok, token} -> token end), fn token -> "https://api.telegram.org" <> "/bot#{token}" end)]
+      env: [base_url: then(System.fetch_env!("TOKEN"), fn token -> "https://api.telegram.org" <> "/bot#{token}" end)]
     ]
     
   end
