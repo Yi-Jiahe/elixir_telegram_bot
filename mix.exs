@@ -27,8 +27,9 @@ defmodule Homunculus.MixProject do
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:plug_cowboy, "~> 2.0"},
-      {:json, "~> 1.4"},
-      {:rot13, "~> 0.1.0"}
+      {:jason, "~> 1.2"},
+      {:rot13, "~> 0.1.0"},
+      {:mangadexapiv5wrapper, git: "https://github.com/Yi-Jiahe/mangadex_api_v5_wrapper.git", tag: "v0.1.0"}
     ]
   end
 end

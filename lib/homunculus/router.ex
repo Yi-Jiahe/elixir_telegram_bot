@@ -2,7 +2,7 @@ defmodule Homunculus.Router do
   use Plug.Router
 
   plug :match
-  plug Plug.Parsers, parsers: [:json], json_decoder: JSON
+  plug Plug.Parsers, parsers: [:json], json_decoder: Jason
   plug :dispatch
 
   alias Homunculus.Dispatcher
